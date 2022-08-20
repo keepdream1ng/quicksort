@@ -10,7 +10,7 @@ all: $(EXECUTABLE)
 	./$(EXECUTABLE)
 
 debug: $(SOURCES)
-	$(CC) $(CFLAGS) -ggdb $< -o debug
+	$(CC) $(CFLAGS) -ggdb -fvar-tracking $< -o debug
 	gdb ./debug
 
 $(EXECUTABLE): $(OBJECTS)
