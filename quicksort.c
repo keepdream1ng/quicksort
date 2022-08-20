@@ -21,29 +21,36 @@ int partition (int arr[], int wall_l, int wall_r) {
     //int pivot = srand(wall_l)%(wall_r-wall_l);
     //swap(arr, pivot, wall_r);
     int pivotpos = wall_l;
-    for (int j=wall_l+1; j<wall_r; j++) {
+    for (int j=wall_l; j<wall_r; j++) {
         if (arr[j]<arr[wall_r]) {
             swap(arr, pivotpos++, j);
         }
     }
-    swap(arr, wall_r,pivotpos);
+    if (arr[pivotpos]>arr[wall_r]) {
+        swap(arr, wall_r,pivotpos); //условие выше, на случай готового куска
+    }
     return pivotpos; // все значение до этой позиции меньше
 }
 
-
+void quicksort (int arr[], int wall_l, int wall_r) {
+    if (wall_l<wall_r) {
+        int pivot = partition(arr, wall_l, wall_r);
+        quicksort(arr, wall_l, pivot-1);
+        quicksort(arr, pivot, wall_r);
+    }
+}
 
 int main (int argc, char **argv) {
     if (argc<=2) return 0; // защита памяти, нечего сортировать
-    for (int i=0; i<argc; i++) {
-        printf("arg %d - %s\n",i, argv[i]);
-    }
+
 //making array with ints, not strings
     int target[argc-1];
     for (int i=1; i<argc; i++) {
        target[i-1]=atoi(argv[i]); 
     }
 //testing partition
-    printf("pivot is %d\n",partition(target, 0, argc-2));
+//    printf("pivot is %d\n",partition(target, 0, argc-2));
+    quicksort(target, 0, argc-2);
 
     printarr(target,0, argc-2);
     

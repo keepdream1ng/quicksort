@@ -11,7 +11,7 @@ all: $(EXECUTABLE)
 
 debug: $(SOURCES)
 	$(CC) $(CFLAGS) -ggdb -fvar-tracking $< -o debug
-	gdb ./debug
+	gdb ./debug core
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) -o $(EXECUTABLE)
