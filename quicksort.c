@@ -22,7 +22,7 @@ int partition (int arr[], int wall_l, int wall_r) {
     //swap(arr, pivot, wall_r);
     int pivotpos = wall_l;
     for (int j=wall_l; j<wall_r; j++) {
-        if (arr[j]<arr[wall_r]) {
+        if (arr[j]<=arr[wall_r]) {
             swap(arr, pivotpos++, j);
         }
     }
