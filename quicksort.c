@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h> //for atoi and srand
 
+//функция печати для отладки
+void printarr(int arr[], int i,int j) {
+    for (;i<=j; i++) {printf("%d ", arr[i]);}
+    printf("\n");
+}
+    
+
 //next function swaps integers without temp
 void swap (int arr[], int i, int j) {
         if (i!=j) {
@@ -14,10 +21,9 @@ int partition (int arr[], int wall_l, int wall_r) {
     //int pivot = srand(wall_l)%(wall_r-wall_l);
     //swap(arr, pivot, wall_r);
     int pivotpos = wall_l;
-    for (int j=wall_l; j<wall_r; j++) {
+    for (int j=wall_l+1; j<wall_r; j++) {
         if (arr[j]<arr[wall_r]) {
-            pivotpos++;
-            swap(arr, pivotpos-1, j);
+            swap(arr, pivotpos++, j);
         }
     }
     swap(arr, wall_r,pivotpos);
@@ -36,10 +42,9 @@ int main (int argc, char **argv) {
        target[i-1]=atoi(argv[i]); 
     }
 //testing partition
-    printf("pivot is %d\n",partition(target, 0, argc-1));
+    printf("pivot is %d\n",partition(target, 0, argc-2));
 
-    for (int i=0; i<argc-1; i++) {
-        printf ("%d ", target[i]);
-    }
+    printarr(target,0, argc-2);
+    
     return 0;
 }
