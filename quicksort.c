@@ -27,12 +27,13 @@ int partition (int arr[], int wall_l, int wall_r) {
         }
     }
     swap(arr, wall_r,pivotpos);
-    return pivotpos;
+    return pivotpos; // все значение до этой позиции меньше
 }
 
 
 
 int main (int argc, char **argv) {
+    if (argc<=2) return 0; // защита памяти, нечего сортировать
     for (int i=0; i<argc; i++) {
         printf("arg %d - %s\n",i, argv[i]);
     }
