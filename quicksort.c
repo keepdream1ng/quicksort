@@ -1,5 +1,6 @@
+//quicksort.c
+//#include "quicksort.h" 
 #include <stdio.h>
-#include <stdlib.h> //for atoi and srand
 
 //функция печати для отладки
 void printarr(int arr[], int i,int j) {
@@ -18,8 +19,6 @@ void swap (int arr[], int i, int j) {
 } 
 
 int partition (int arr[], int wall_l, int wall_r) {
-    //int pivot = srand(wall_l)%(wall_r-wall_l);
-    //swap(arr, pivot, wall_r);
     int pivotpos = wall_l;
     for (int j=wall_l; j<wall_r; j++) {
         if (arr[j]<=arr[wall_r]) {
@@ -40,6 +39,7 @@ void quicksort (int arr[], int wall_l, int wall_r) {
     }
 }
 
+/* для оформления отдельного main работающего с pipeline
 int main (int argc, char **argv) {
     if (argc<=2) return 0; // защита памяти, нечего сортировать
 
@@ -48,11 +48,11 @@ int main (int argc, char **argv) {
     for (int i=1; i<argc; i++) {
        target[i-1]=atoi(argv[i]); 
     }
-//testing partition
-//    printf("pivot is %d\n",partition(target, 0, argc-2));
+
     quicksort(target, 0, argc-2);
 
     printarr(target,0, argc-2);
     
     return 0;
 }
+*/

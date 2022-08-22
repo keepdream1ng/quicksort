@@ -1,9 +1,9 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -Wpedantic -g
+CFLAGS=-Wall -Wextra -Wpedantic
 LDFLAGS=
 
-SOURCES=$(wildcard *.c )
-OBJECTS=$(SOURCES:.c=.o)
+SOURCES=$(wildcard *.c)
+OBJECTS=$(patsubst %.c, %.o, $(SOURCES))
 EXECUTABLE=exec
 
 all: $(EXECUTABLE)
@@ -20,4 +20,4 @@ $(OBJECTS): $(SOURCES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm $(EXECUTABLE) $(OBJECTS) debug
+	rm $(EXECUTABLE) *.o debug
