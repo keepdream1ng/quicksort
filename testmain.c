@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h> //for atoi and srand
 #include "quicksort.h"
+#include "linkedlists.h"
 
 int main (int argc, char **argv) {
     if (argc<=2) {

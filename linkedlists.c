@@ -5,8 +5,7 @@
 typedef struct node {
     int val;
     struct node* next;
-} node_t; 
-
+} node_t;
 
 void printlist(node_t *head) {
     if (head == NULL) {
@@ -50,24 +49,4 @@ node_t* insert_node_after(node_t *target_node, node_t *node_to_insert) {
     }
     target_node->next = node_to_insert;
     return node_to_insert; // so this is easy to chain
-}
-
-
-int main() {
-    node_t *head = create_new_node (0);
-    node_t *tmp = head; 
-    for (int i=1; i<=25; i++) {
-        tmp = insert_node_after (tmp, create_new_node (i)); 
-    }
-
-    printlist (head);
-
-    insert_node_after(head->next->next->next, create_new_node (99));
-
-    printlist (head);
-
-    delete_whole (head);
-
-    printlist (head);
-    return 0;
 }
