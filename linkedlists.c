@@ -30,7 +30,7 @@ node_t* create_new_node(int val) {
     return result;
 }
     
-//funcion deletes whole list from head by freeing memory
+//function deletes whole list from head by freeing memory
 void delete_whole (node_t *head) {
     if (head == NULL) {
         printf("error");
@@ -43,19 +43,26 @@ void delete_whole (node_t *head) {
     }
 }
 
+//function connects node to the pointed node and pushes if there is something
+node_t* insert_node_after(node_t *target_node, node_t *node_to_insert) {
+    if (target_node->next != NULL) {
+        node_to_insert->next=target_node->next;
+    }
+    target_node->next = node_to_insert;
+    return node_to_insert; // so this is easy to chain
+}
+
 
 int main() {
-    node_t *head = create_new_node (45);
-    node_t *tmp1 = create_new_node(21);
-    node_t *tmp2 = create_new_node(68);
-    node_t *tmp3 = create_new_node(55);
+    node_t *head = create_new_node (0);
+    node_t *tmp = head; 
+    for (int i=1; i<=25; i++) {
+        tmp = insert_node_after (tmp, create_new_node (i)); 
+    }
 
+    printlist (head);
 
-
-    head->next = tmp3;
-    tmp3->next = tmp2;
-    tmp2->next = tmp1;
-    tmp1->next = NULL;
+    insert_node_after(head->next->next->next, create_new_node (99));
 
     printlist (head);
 
