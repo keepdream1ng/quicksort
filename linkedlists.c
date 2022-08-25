@@ -2,22 +2,38 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node {
+struct node {
     int val;
     struct node* next;
-} node_t;
+}; 
+typedef struct node node_t;
 
-void printlist(node_t* head) {
+void printlist(node_t *head) {
     if (head == NULL) {
         printf("error");
-        return 1;
+    } else {
+        while (head!=NULL) {
+            printf("%d-",head->val);
+            head = head->next;
+        }
+        printf("\n");
     }
-    do {
-        printf("%d-", head->val);
-    } while (head->next!=NULL);
 }
 
 int main() {
+    node_t n1, n2, n3;
+    node_t *head;
+
+    n1.val =45;
+    n2.val =8;
+    n3.val =32;
+
+    head = &n3;
+    n3.next = &n2;
+    n2.next = &n1;
+    n1.next = NULL;
+
+    printlist(head);
 
     return 0;
 }
