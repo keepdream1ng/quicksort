@@ -18,7 +18,7 @@ int main (int argc, char **argv) {
             count++;
         }
 //converting linked list to array for sorting
-        int target_arr[count];
+        int *target_arr = (int *) malloc((count+1) * sizeof(int));
         tmp=head;
         for (int i=0; i<=count; i++) {
             target_arr[i] = tmp->val;
@@ -27,6 +27,7 @@ int main (int argc, char **argv) {
         delete_whole(head);
         quicksort (target_arr, 0, count);
         printarr (target_arr, 0, count);
+        free(target_arr);
     } else { // for the terminal input which comes in *argc
 //making array with ints, not strings
         int target[argc-1];
