@@ -1,32 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h> //for atoi and srand
 #include "quicksort.h"
-#include "linkedlists.h"
 
 #define MAX_INPUT 100
+#define ARRAY_INCREMENT 100 
 
 int main (int argc, char **argv) {
     if (argc<=2) { //for the pipeline input
         char input[MAX_INPUT];
-        scanf("%s", input);
-        if (input[0]=='q') return 0; // exit from programm screen
-        int count = 0;
-        node_t *head = create_new_node(atoi(input));
-        node_t *tmp = head; // temporary pointer for linked list creation
+        int *target_arr = (int *) malloc(ARRAY_INCREMENT * sizeof(int));
+        int index = 0;
+        int count = 1;
         while (scanf("%s", input)!=EOF) {
-            tmp = insert_node_after( tmp, create_new_node ( atoi(input)));
-            count++;
+            if (input[0]=='q') return 0; // exit from programm screen
+            if (index + 1==ARRAY_INCREMENT*count) {
+                count++;
+                target_arr = (int *) realloc(target_arr, ARRAY_INCREMENT * count * sizeof(int));
+            }
+            target_arr[index]=atoi(input);
+            index++;
         }
-//converting linked list to array for sorting
-        int *target_arr = (int *) malloc((count+1) * sizeof(int));
-        tmp=head;
-        for (int i=0; i<=count; i++) {
-            target_arr[i] = tmp->val;
-            tmp = tmp->next;
-        }
-        delete_whole(head);
-        quicksort (target_arr, 0, count);
-        printarr (target_arr, 0, count);
+        quicksort (target_arr, 0, index-1);
+        printarr (target_arr, 0, index-1);
         free(target_arr);
     } else { // for the terminal input which comes in *argc
 //making array with ints, not strings
